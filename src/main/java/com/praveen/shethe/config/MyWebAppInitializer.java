@@ -27,7 +27,7 @@ public class MyWebAppInitializer implements WebApplicationInitializer {
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("com.praveen.shethe.config");
+        context.setConfigLocation("com.praveen.shethe.config.WebapplicationConfiguration");
         return context;
     }
 
