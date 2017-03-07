@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
  * Created by Praveenkumar on 3/7/2017.
  */
 @RestController
-@RequestMapping(value = "/checklists", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/books", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BookController {
 
     @Autowired
