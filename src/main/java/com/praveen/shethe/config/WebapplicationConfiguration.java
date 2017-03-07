@@ -1,5 +1,6 @@
 package com.praveen.shethe.config;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.env.YamlPropertySourceLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,6 +20,7 @@ import java.io.IOException;
 @Configuration
 @ComponentScan(basePackages = "com.praveen.shethe")
 @EnableWebMvc
+@ConfigurationProperties(value = "classpath:/application.yml")
 public class WebapplicationConfiguration {
 
     @Bean

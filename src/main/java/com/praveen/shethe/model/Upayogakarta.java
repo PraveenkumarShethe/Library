@@ -8,7 +8,7 @@ import javax.persistence.Table;
  * Created by Praveenkumar on 3/6/2017.
  */
 @Entity
-@Table(name = "Upayogakarta")
+@Table(name = "upayogakarta")
 public class Upayogakarta extends AbstractEntity {
 
     @Column(name = "name")
