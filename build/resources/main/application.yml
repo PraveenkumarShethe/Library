@@ -7,16 +7,10 @@ spring:
 spring:
   profiles: common
 server:
-  contextPath: /libraryDB
+  contextPath: /library
   port: 9000
 token :
   secret : 9SyECk96oDsTmXfogIieDI0cD/8FpnojlYSUJT5U9I/FGVmBz5oskmjOR8cbXTvoPjX+Pq/T/b1PqpHX0lYm0oCBjXWICA==
-#flyway database migration settings
-#flyway:
-#  enabled: true
-#  check-location: true
-#  locations: classpath:db/migration
-#  validate-on-migrate: true
 ---
 #Properties for the "local" profile, to be used by developers on their laptop
 spring:
@@ -33,7 +27,7 @@ spring:
     password: password
     url: jdbc:postgresql://127.0.0.1:5432/libraryDB
 logging:
-  file: WorkManagementSystem.log
+  file: Library.log
   level:
     org.springframework: OFF
     org.hibernate: DEBUG
