@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- * Created by plank-praveen on 12/28/2016.
+ * Created by Praveenkumar on 03/29/2016.
  */
 public class UpayogakartaAuthenticationException extends AuthenticationException{
     private static final Logger logger = LoggerFactory.getLogger(UpayogakartaAuthenticationException.class);

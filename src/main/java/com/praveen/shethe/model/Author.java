@@ -1,8 +1,12 @@
 package com.praveen.shethe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by Praveenkumar on 3/31/2017.
@@ -24,10 +28,6 @@ public class Author extends AbstractEntity {
     @NotNull
     @Column(name = "author_address")
     private String authorAddress;
-
-    @NotNull
-    @OneToMany
-    private Book book;
 
     public String getAuthorName() {
         return authorName;
@@ -60,4 +60,5 @@ public class Author extends AbstractEntity {
     public void setAuthorAddress(String authorAddress) {
         this.authorAddress = authorAddress;
     }
+
 }

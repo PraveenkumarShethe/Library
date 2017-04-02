@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 /**
- * Created by plank-praveen on 12/27/2016.
+  * Created by Praveenkumar on 03/29/2016.
  */
 public class UpayogakartaAuthentication implements Authentication {
 

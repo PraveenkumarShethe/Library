@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Created by plank-abhijit on 5/11/16.
+ * Created by Praveenkumar on 03/29/2016.
  */
 
 @Entity
