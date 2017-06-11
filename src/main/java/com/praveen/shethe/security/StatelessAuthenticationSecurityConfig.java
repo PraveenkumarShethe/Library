@@ -47,7 +47,6 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
             final String msg = "Exception occurred during creation of AuthenticationManager: " + e.toString();
             throw new UpayogakartaAuthenticationException(msg, e.getCause());
         }
-
         return statelessTokenBasedLoginFilter;
     }
 

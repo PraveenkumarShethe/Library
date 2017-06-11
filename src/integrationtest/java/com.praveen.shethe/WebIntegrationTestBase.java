@@ -21,7 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@SpringApplicationConfiguration(classes = MyProjectApplication.class)
+@SpringApplicationConfiguration(classes = LibraryApplication.class)
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class})
 public abstract class WebIntegrationTestBase {
 

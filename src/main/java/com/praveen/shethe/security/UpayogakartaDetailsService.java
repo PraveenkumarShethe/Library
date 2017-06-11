@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 
 /**
- * Created by plank-praveen on 12/27/2016.
+ * Created by Praveenkumar on 03/29/2016.
  */
 @Service
 public class UpayogakartaDetailsService implements UserDetailsService {
