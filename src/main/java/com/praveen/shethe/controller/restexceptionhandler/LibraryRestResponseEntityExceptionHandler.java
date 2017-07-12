@@ -43,7 +43,7 @@ public class LibraryRestResponseEntityExceptionHandler extends ResponseEntityExc
             KeyStoreException.class,
             IOException.class,
     })
-    public final ResponseEntity<Object> handlePlankException(Exception ex, WebRequest request) {
+    public final ResponseEntity<Object> handleLibraryException(Exception ex, WebRequest request) {
         HttpHeaders headers = new HttpHeaders();
         if (ex instanceof ConstraintViolationException) {
             HttpStatus status = HttpStatus.BAD_REQUEST;
