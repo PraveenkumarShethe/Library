@@ -1,16 +1,15 @@
 package com.praveen.shethe.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * Created by Praveenkumar on 3/31/2017.
  */
+@Entity
+@Table(name = "author")
 public class Author extends AbstractEntity {
 
     @NotNull
