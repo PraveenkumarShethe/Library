@@ -2,6 +2,7 @@ package com.praveen.shethe.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ public class Book extends AbstractEntity {
     private String name;
 
     @NotNull
-    @Column(name = "author_id")
+    @JoinColumn(name = "author_id")
     @ManyToOne
     private Author author;
 

@@ -2,14 +2,17 @@ package com.praveen.shethe.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.praveen.shethe.security.UserAuthority;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,7 +21,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "upayogakarta")
-public class Upayogakarta extends AbstractEntity implements UserDetails,CredentialsContainer{
+public class Upayogakarta extends AbstractEntity implements UserDetails, CredentialsContainer {
 
     @Ignore
     @Column(name = "first_name")
