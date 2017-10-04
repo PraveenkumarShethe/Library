@@ -8,12 +8,14 @@ import java.util.Collection;
 
 /**
  * Created by Praveenkumar on 3/8/2017.
+ * RestPreconditions for all null checks for controller layer checks
  */
 public class RestApiPreconditions {
 
     private static final Logger logger = LoggerFactory.getLogger(RestApiPreconditions.class);
 
     public static <T> T checkFound(final T resource) throws LibraryResourceNotFoundException{
+
         if (resource == null
                 || (resource instanceof Collection
                 && ((Collection) resource).isEmpty())

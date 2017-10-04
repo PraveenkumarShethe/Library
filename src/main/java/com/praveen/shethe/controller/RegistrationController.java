@@ -8,14 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import java.security.Principal;
 
 /**
  * Created by user on 3/3/2017.
@@ -29,6 +24,12 @@ public class RegistrationController {
     @Autowired
     private RoleRepository roleRepository;
 
+    /**
+     * @return An iterable of the list of Books without filter
+     * Http.ok will be returned{@code 200 OK}.
+     * Http.NOT_FOUND will be returned if not found {@code 404 Not Found}.
+     */
+    //Todo Need to add doc for principle
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional(Transactional.TxType.REQUIRES_NEW)
@@ -41,6 +42,12 @@ public class RegistrationController {
         upayogakartaRepository.save(upayogakarta);
     }
 
+    /**
+     * @return An iterable of the list of Upayogakarta without filter
+     * Http.ok will be returned{@code 200 OK}.
+     * Http.NOT_FOUND will be returned if not found {@code 404 Not Found}.
+     */
+    //Todo Need to add doc for principle
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Transactional(Transactional.TxType.NEVER)
