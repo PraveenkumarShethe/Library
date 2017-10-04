@@ -31,7 +31,7 @@ logging:
   level:
     org.springframework: OFF
     org.hibernate: OFF
-    life.plank.snap: OFF
+    com.praveen.shethe: OFF
     b.c.e.u.UndertowEmbeddedServletContainer: OFF
 
 token :
