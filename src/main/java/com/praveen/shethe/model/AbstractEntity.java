@@ -6,7 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
+ */
+
+/**
  * Created by Praveenkumar on 3/6/2017.
+ * The abstract class for all entity classes. This provides the unique id to
+ * identify a row in the SQL db.
+ * <p>
  */
 @MappedSuperclass
 public abstract class AbstractEntity {

@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Created by Praveenkumar on 3/7/2017.
+ * The Book detail class
  */
 @Entity
 @Table(name = "book")

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Created by Praveenkumar on 3/31/2017.
+ * The Author detail class
  */
 @Entity
 @Table(name = "author")
