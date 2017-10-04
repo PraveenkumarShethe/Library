@@ -6,6 +6,8 @@ import javax.persistence.Table;
 
 /**
  * Created by Praveenkumar on 03/29/2016.
+ * The Role detail class
+ * Role is user levels
  */
 
 @Entity

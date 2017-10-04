@@ -18,6 +18,7 @@ import java.util.Collection;
 
 /**
  * Created by Praveenkumar on 3/6/2017.
+ * The Upayogakarta detail class
  */
 @Entity
 @Table(name = "upayogakarta")
