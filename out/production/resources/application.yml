@@ -29,10 +29,10 @@ spring:
 logging:
   file: Library.log
   level:
-    org.springframework: DEBUG
-    org.hibernate: DEBUG
-    life.plank.snap: DEBUG
-    b.c.e.u.UndertowEmbeddedServletContainer: DEBUG
+    org.springframework: OFF
+    org.hibernate: OFF
+    com.praveen.shethe: OFF
+    b.c.e.u.UndertowEmbeddedServletContainer: OFF
 
 token :
   secret : 9SyECk96oDsTmXfoaaiRDG0BH/8FpnojlYSUJT5U9I/FGVmBz5oskmjOR8cbXTvoPjX+Pq/T/b1PqpHX0lYm0oCBjXWICA==

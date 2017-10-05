@@ -1,6 +1,12 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.1.RELEASE'
+		springBootVersion = '1.3.6.RELEASE'
+		jacksonDatabindVersion = '2.6.1'
+		springSecurityWebVersion = '4.1.1.RELEASE'
+		springxWebVersion = '4.1.1.RELEASE'
+		flywayCoreVersion = '4.0.3'
+		flywaySpringTestVersion = '4.0.1'
+
 	}
 	repositories {
 		mavenCentral()
@@ -24,11 +30,18 @@ jar {
 	baseName = 'Library'
 	version = '0.0.1-SNAPSHOT'
 }
-
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+task copyYamlFiles(type: Copy) {
+	fileTree('build/libs')
+	from 'src/main/resources/application.yml'
+	into 'build/libs/'
+}
+jar.dependsOn copyYamlFiles
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 dependencies {
@@ -39,7 +52,34 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-logging")
 	compile("org.springframework.boot:spring-boot-starter-log4j2")
 	compile("commons-validator:commons-validator:1.4.0")
+	compile("org.springframework.boot:spring-boot-starter-security")
+	compile("org.springframework.security:spring-security-web:${springSecurityWebVersion}")
+	compile("org.springframework.security:spring-security-acl:${springSecurityWebVersion}")
+	compile("com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}")
 	compile("com.fasterxml.jackson.core:jackson-core:2.7.5")
+	compile("com.fasterxml.jackson.core:jackson-annotations:2.7.5")
 	compile("org.hsqldb:hsqldb")
 	compile("org.postgresql:postgresql:9.4-1204-jdbc42")
+	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+}
+// Integration Testing
+sourceSets {
+	integrationTest {
+		java.srcDir file('src/integrationtest/java')
+		resources.srcDir file('src/integrationtest/resources')
+		compileClasspath = sourceSets.main.output + configurations.testRuntime
+		runtimeClasspath = output + compileClasspath
+	}
+}
+
+task integrationTest(type: Test) {
+	description = 'Runs all integration tests'
+	group = 'verification'
+//	testClassesDir = sourceSets.integrationtest.output.classesDir
+//	classpath = sourceSets.integrationtest.runtimeClasspath
+//	reports.junitXml.destination = file("$testResultsDir/integrationtest")
+
+	testLogging {
+		events 'started', 'passed', 'skipped', 'failed'
+	}
 }

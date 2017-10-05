@@ -8,9 +8,11 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.persistence.EntityNotFoundException;
@@ -23,6 +25,34 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by Praveenkumar on 3/8/2017.
  */
+
+
+/**
+ * A convenient base class for {@link ControllerAdvice @ControllerAdvice} classes
+ * that wish to provide centralized exception handling across all
+ * {@code @RequestMapping} methods through {@code @ExceptionHandler} methods.
+ *
+ * <p>This base class provides an {@code @ExceptionHandler} method for handling
+ * internal Spring MVC exceptions. This method returns a {@code ResponseEntity}
+ * for writing to the response with a {@link HttpMessageConverter message converter}.
+ * in contrast to
+ * {@link org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver
+ * DefaultHandlerExceptionResolver} which returns a
+ * {@link org.springframework.web.servlet.ModelAndView ModelAndView}.
+ *
+ * <p>If there is no need to write error content to the response body, or when
+ * using view resolution (e.g., via {@code ContentNegotiatingViewResolver}),
+ * then {@code DefaultHandlerExceptionResolver} is good enough.
+ *
+ * <p>Note that in order for an {@code @ControllerAdvice} sub-class to be
+ * detected, {@link ExceptionHandlerExceptionResolver} must be configured.
+ *
+ * @author Rossen Stoyanchev
+ * @since 3.2
+ * @see #handleException(Exception, WebRequest)
+ * @see org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver
+ */
+
 @ControllerAdvice
 public class LibraryRestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -30,6 +60,13 @@ public class LibraryRestResponseEntityExceptionHandler extends ResponseEntityExc
         super();
     }
 
+
+    /**
+     * Provides handling for standard Spring MVC exceptions.
+     * @param ex the target exception
+     * @param request the current request
+     */
+    
     @ExceptionHandler(value = {
             ConstraintViolationException.class,
             IllegalArgumentException.class,
@@ -43,7 +80,7 @@ public class LibraryRestResponseEntityExceptionHandler extends ResponseEntityExc
             KeyStoreException.class,
             IOException.class,
     })
-    public final ResponseEntity<Object> handlePlankException(Exception ex, WebRequest request) {
+    public final ResponseEntity<Object> handleLibraryException(Exception ex, WebRequest request) {
         HttpHeaders headers = new HttpHeaders();
         if (ex instanceof ConstraintViolationException) {
             HttpStatus status = HttpStatus.BAD_REQUEST;

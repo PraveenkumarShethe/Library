@@ -2,24 +2,33 @@ package com.praveen.shethe.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Praveenkumar on 3/7/2017.
+ * The Book detail class
  */
 @Entity
 @Table(name = "book")
 public class Book extends AbstractEntity {
 
     @Column(name = "name")
+    @NotNull
     private String name;
 
-    @Column(name = "author")
-    private String author;
+    @NotNull
+    @JoinColumn(name = "author_id")
+    @ManyToOne
+    private Author author;
 
+    @NotNull
     @Column(name = "edition")
     private String edition;
 
+    @NotNull
     @Column(name = "price")
     private Long price;
 
@@ -31,11 +40,11 @@ public class Book extends AbstractEntity {
         this.name = name;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
