@@ -7,14 +7,12 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "digital_file_info")
-public class DigitalFileInfo {
+public class DigitalFileInfo extends AbstractEntity{
 
     @Column(name = "file_name")
-    @NotNull
     private String fileName;
 
     @Column(name = "file_size")
-    @NotNull
     private long fileSize;
 
     public String getFileName() {
