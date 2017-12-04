@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 
 /**
- * Created by user on 3/3/2017.
+ * Created by Praveenkumar on 3/3/2017.
  */
 @RestController(value = "/register")
 public class RegistrationController {
@@ -54,6 +54,4 @@ public class RegistrationController {
     public Iterable<Upayogakarta> getAllUpayogakarta() {
         return upayogakartaRepository.findAll();
     }
-
-
 }
