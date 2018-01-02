@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "digital_file_info")
-public class DigitalFileInfo {
+public class DigitalFileInfo extends AbstractEntity{
 
     @Column(name = "file_name")
     @NotNull
