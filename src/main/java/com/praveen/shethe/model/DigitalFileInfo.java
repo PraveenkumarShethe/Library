@@ -10,11 +10,9 @@ import javax.validation.constraints.NotNull;
 public class DigitalFileInfo extends AbstractEntity{
 
     @Column(name = "file_name")
-    @NotNull
     private String fileName;
 
     @Column(name = "file_size")
-    @NotNull
     private long fileSize;
 
     public String getFileName() {
