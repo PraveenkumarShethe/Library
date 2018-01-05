@@ -33,7 +33,48 @@ logging:
     org.hibernate: OFF
     com.praveen.shethe: OFF
     b.c.e.u.UndertowEmbeddedServletContainer: OFF
-
-token :
-  secret : 9SyECk96oDsTmXfoaaiRDG0BH/8FpnojlYSUJT5U9I/FGVmBz5oskmjOR8cbXTvoPjX+Pq/T/b1PqpHX0lYm0oCBjXWICA==
+---
+#Properties for the "prod" profile, to be used by developers on their laptop
+spring:
+  profiles: prod
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    driverClassName: org.postgresql.Driver
+    username: libraryuser
+    password: password
+    url: jdbc:postgresql://127.0.0.1:5432/ProdlibraryDB
+logging:
+  file: Library.log
+  level:
+    org.springframework: OFF
+    org.hibernate: OFF
+    com.praveen.shethe: OFF
+    b.c.e.u.UndertowEmbeddedServletContainer: OFF
+---
+#Properties for the "qa" profile, to be used by developers on their laptop
+spring:
+  profiles: qa
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    driverClassName: org.postgresql.Driver
+    username: libraryuser
+    password: password
+    url: jdbc:postgresql://127.0.0.1:5432/QalibraryDB
+logging:
+  file: Library.log
+  level:
+    org.springframework: OFF
+    org.hibernate: OFF
+    com.praveen.shethe: OFF
+    b.c.e.u.UndertowEmbeddedServletContainer: OFF
 ---

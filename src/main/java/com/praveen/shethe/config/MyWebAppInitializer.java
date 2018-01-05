@@ -5,7 +5,6 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
@@ -20,12 +19,12 @@ import javax.servlet.ServletRegistration;
  * Interface to be implemented in Servlet 3.0+ environments in order to configure the
  * {@link ServletContext} programmatically -- as opposed to (or possibly in conjunction
  * with) the traditional {@code web.xml}-based approach.
- *
+ * <p>
  * <p>Implementations of this SPI will be detected automatically by {@link
  * SpringServletContainerInitializer}, which itself is bootstrapped automatically
  * by any Servlet 3.0 container. See {@linkplain SpringServletContainerInitializer its
  * Javadoc} for details on this bootstrapping mechanism.
- *
+ * <p>
  * <h2>Example</h2>
  * <h3>The traditional, XML-based approach</h3>
  * Most Spring users building a web application will need to register Spring's {@code
@@ -34,54 +33,54 @@ import javax.servlet.ServletRegistration;
  * <pre class="code">
  * {@code
  * <servlet>
- *   <servlet-name>dispatcher</servlet-name>
- *   <servlet-class>
- *     org.springframework.web.servlet.DispatcherServlet
- *   </servlet-class>
- *   <init-param>
- *     <param-name>contextConfigLocation</param-name>
- *     <param-value>/WEB-INF/spring/dispatcher-config.xml</param-value>
- *   </init-param>
- *   <load-on-startup>1</load-on-startup>
+ * <servlet-name>dispatcher</servlet-name>
+ * <servlet-class>
+ * org.springframework.web.servlet.DispatcherServlet
+ * </servlet-class>
+ * <init-param>
+ * <param-name>contextConfigLocation</param-name>
+ * <param-value>/WEB-INF/spring/dispatcher-config.xml</param-value>
+ * </init-param>
+ * <load-on-startup>1</load-on-startup>
  * </servlet>
- *
+ * <p>
  * <servlet-mapping>
- *   <servlet-name>dispatcher</servlet-name>
- *   <url-pattern>/</url-pattern>
+ * <servlet-name>dispatcher</servlet-name>
+ * <url-pattern>/</url-pattern>
  * </servlet-mapping>}</pre>
- *
+ * <p>
  * <h3>The code-based approach with {@code WebApplicationInitializer}</h3>
  * Here is the equivalent {@code DispatcherServlet} registration logic,
  * {@code WebApplicationInitializer}-style:
  * <pre class="code">
  * public class MyWebAppInitializer implements WebApplicationInitializer {
- *
- *    &#064;Override
- *    public void onStartup(ServletContext container) {
- *      XmlWebApplicationContext appContext = new XmlWebApplicationContext();
- *      appContext.setConfigLocation("/WEB-INF/spring/dispatcher-config.xml");
- *
- *      ServletRegistration.Dynamic dispatcher =
- *        container.addServlet("dispatcher", new DispatcherServlet(appContext));
- *      dispatcher.setLoadOnStartup(1);
- *      dispatcher.addMapping("/");
- *    }
- *
+ * <p>
+ * &#064;Override
+ * public void onStartup(ServletContext container) {
+ * XmlWebApplicationContext appContext = new XmlWebApplicationContext();
+ * appContext.setConfigLocation("/WEB-INF/spring/dispatcher-config.xml");
+ * <p>
+ * ServletRegistration.Dynamic dispatcher =
+ * container.addServlet("dispatcher", new DispatcherServlet(appContext));
+ * dispatcher.setLoadOnStartup(1);
+ * dispatcher.addMapping("/");
+ * }
+ * <p>
  * }</pre>
- *
+ * <p>
  * As an alternative to the above, you can also extend from {@link
  * org.springframework.web.servlet.support.AbstractDispatcherServletInitializer}.
- *
+ * <p>
  * As you can see, thanks to Servlet 3.0's new {@link ServletContext#addServlet} method
  * we're actually registering an <em>instance</em> of the {@code DispatcherServlet}, and
  * this means that the {@code DispatcherServlet} can now be treated like any other object
  * -- receiving constructor injection of its application context in this case.
- *
+ * <p>
  * <p>This style is both simpler and more concise. There is no concern for dealing with
  * init-params, etc, just normal JavaBean-style properties and constructor arguments. You
  * are free to create and work with your Spring application contexts as necessary before
  * injecting them into the {@code DispatcherServlet}.
- *
+ * <p>
  * <p>Most major Spring Web components have been updated to support this style of
  * registration.  You'll find that {@code DispatcherServlet}, {@code FrameworkServlet},
  * {@code ContextLoaderListener} and {@code DelegatingFilterProxy} all now support
@@ -89,7 +88,7 @@ import javax.servlet.ServletRegistration;
  * been specifically updated for use within {@code WebApplicationInitializers}, they still
  * may be used in any case. The Servlet 3.0 {@code ServletContext} API allows for setting
  * init-params, context-params, etc programmatically.
- *
+ * <p>
  * <h2>A 100% code-based approach to configuration</h2>
  * In the example above, {@code WEB-INF/web.xml} was successfully replaced with code in
  * the form of a {@code WebApplicationInitializer}, but the actual
@@ -106,38 +105,38 @@ import javax.servlet.ServletRegistration;
  * context and registration of the {@code ContextLoaderListener}:
  * <pre class="code">
  * public class MyWebAppInitializer implements WebApplicationInitializer {
- *
- *    &#064;Override
- *    public void onStartup(ServletContext container) {
- *      // Create the 'root' Spring application context
- *      AnnotationConfigWebApplicationContext rootContext =
- *        new AnnotationConfigWebApplicationContext();
- *      rootContext.register(AppConfig.class);
- *
- *      // Manage the lifecycle of the root application context
- *      container.addListener(new ContextLoaderListener(rootContext));
- *
- *      // Create the dispatcher servlet's Spring application context
- *      AnnotationConfigWebApplicationContext dispatcherContext =
- *        new AnnotationConfigWebApplicationContext();
- *      dispatcherContext.register(DispatcherConfig.class);
- *
- *      // Register and map the dispatcher servlet
- *      ServletRegistration.Dynamic dispatcher =
- *        container.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
- *      dispatcher.setLoadOnStartup(1);
- *      dispatcher.addMapping("/");
- *    }
- *
+ * <p>
+ * &#064;Override
+ * public void onStartup(ServletContext container) {
+ * // Create the 'root' Spring application context
+ * AnnotationConfigWebApplicationContext rootContext =
+ * new AnnotationConfigWebApplicationContext();
+ * rootContext.register(AppConfig.class);
+ * <p>
+ * // Manage the lifecycle of the root application context
+ * container.addListener(new ContextLoaderListener(rootContext));
+ * <p>
+ * // Create the dispatcher servlet's Spring application context
+ * AnnotationConfigWebApplicationContext dispatcherContext =
+ * new AnnotationConfigWebApplicationContext();
+ * dispatcherContext.register(DispatcherConfig.class);
+ * <p>
+ * // Register and map the dispatcher servlet
+ * ServletRegistration.Dynamic dispatcher =
+ * container.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
+ * dispatcher.setLoadOnStartup(1);
+ * dispatcher.addMapping("/");
+ * }
+ * <p>
  * }</pre>
- *
+ * <p>
  * As an alternative to the above, you can also extend from {@link
  * org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}.
- *
+ * <p>
  * Remember that {@code WebApplicationInitializer} implementations are <em>detected
  * automatically</em> -- so you are free to package them within your application as you
  * see fit.
- *
+ * <p>
  * <h2>Ordering {@code WebApplicationInitializer} execution</h2>
  * {@code WebApplicationInitializer} implementations may optionally be annotated at the
  * class level with Spring's @{@link org.springframework.core.annotation.Order Order}
@@ -146,9 +145,9 @@ import javax.servlet.ServletRegistration;
  * a mechanism for users to ensure the order in which servlet container initialization
  * occurs. Use of this feature is expected to be rare, as typical applications will likely
  * centralize all container initialization within a single {@code WebApplicationInitializer}.
- *
+ * <p>
  * <h2>Caveats</h2>
- *
+ * <p>
  * <h3>web.xml versioning</h3>
  * <p>{@code WEB-INF/web.xml} and {@code WebApplicationInitializer} use are not mutually
  * exclusive; for example, web.xml can register one servlet, and a {@code
@@ -158,7 +157,7 @@ import javax.servlet.ServletRegistration;
  * {@code WEB-INF/web.xml} is present in the application, its {@code version} attribute
  * must be set to "3.0" or greater, otherwise {@code ServletContainerInitializer}
  * bootstrapping will be ignored by the servlet container.</strong>
- *
+ * <p>
  * <h3>Mapping to '/' under Tomcat</h3>
  * <p>Apache Tomcat maps its internal {@code DefaultServlet} to "/", and on Tomcat versions
  * &lt;= 7.0.14, this servlet mapping <em>cannot be overridden programmatically</em>.
@@ -166,11 +165,11 @@ import javax.servlet.ServletRegistration;
  * successfully under GlassFish 3.1.<p>
  *
  * @author Chris Beams
- * @since 3.1
  * @see SpringServletContainerInitializer
  * @see org.springframework.web.context.AbstractContextLoaderInitializer
  * @see org.springframework.web.servlet.support.AbstractDispatcherServletInitializer
  * @see org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer
+ * @since 3.1
  */
 
 public class MyWebAppInitializer implements WebApplicationInitializer {
@@ -180,9 +179,10 @@ public class MyWebAppInitializer implements WebApplicationInitializer {
      * Configure the given {@link ServletContext} with any servlets, filters, listeners
      * context-params and attributes necessary for initializing this web application. See
      * examples {@linkplain WebApplicationInitializer above}.
+     *
      * @param servletContext the {@code ServletContext} to initialize
      * @throws ServletException if any call against the given {@code ServletContext}
-     * throws a {@code ServletException}
+     *                          throws a {@code ServletException}
      */
 
     @Override
