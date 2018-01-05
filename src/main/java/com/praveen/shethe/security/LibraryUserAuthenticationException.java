@@ -21,8 +21,9 @@ public class LibraryUserAuthenticationException extends AuthenticationException 
     private static final Logger logger = LoggerFactory.getLogger(LibraryUserAuthenticationException.class);
 
     /**
-    * Constructor LibraryUserAuthenticationException expect @param message
-    * and @param Throwable
+    * Constructor LibraryUserAuthenticationException expect
+     * @param message and
+     * @param throwable
     **/
 
     public LibraryUserAuthenticationException(String message, Throwable throwable) {
@@ -30,10 +31,22 @@ public class LibraryUserAuthenticationException extends AuthenticationException 
         logException(message);
     }
 
+    /**
+     * LibraryUserAuthenticationException expect a String
+     * @param msg
+     * */
+
     public LibraryUserAuthenticationException(String msg) {
         super(msg);
         logException(msg);
     }
+
+    /**
+     * Method logException() expect a String
+     * @param  logMessage
+     * which will be shown in console for better understanding of code control
+     *
+     * */
 
     private static void logException(final String logMessage) {
         logger.info(logMessage);
