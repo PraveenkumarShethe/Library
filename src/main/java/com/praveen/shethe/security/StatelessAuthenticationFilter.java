@@ -54,7 +54,7 @@ public class StatelessAuthenticationFilter extends GenericFilterBean {
 	/**
 	 * The <code>doFilter</code> method of the Filter is called by the
 	 * container each time a request/response pair is passed through the
-	 * chain due to a client request for a resource at the end of the chain.
+	 * chain due to a client request for a resources at the end of the chain.
 	 * The FilterChain passed in to this method allows the Filter to pass
 	 * on the request and response to the next entity in the chain.
 	 *
