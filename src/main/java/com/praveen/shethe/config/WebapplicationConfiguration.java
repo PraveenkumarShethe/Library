@@ -46,7 +46,7 @@ public class WebapplicationConfiguration {
      * <p>
      * <p><b>Note:</b> When chaining ViewResolvers, an InternalResourceViewResolver
      * always needs to be last, as it will attempt to resolve any view name,
-     * no matter whether the underlying resource actually exists.
+     * no matter whether the underlying resources actually exists.
      *
      * @see InternalResourceView
      * @see JstlView
@@ -103,8 +103,8 @@ public class WebapplicationConfiguration {
      * "a note on BeanFactoryPostProcessor-returning @Bean methods" of @{@link Bean}'s javadoc
      * for details and examples.
      * <p>
-     * <h3>Resolving ${...} placeholders within {@code @PropertySource} resource locations</h3>
-     * resource location} will be resolved against the set of property sources already
+     * <h3>Resolving ${...} placeholders within {@code @PropertySource} resources locations</h3>
+     * resources location} will be resolved against the set of property sources already
      * registered against the environment. For example:
      * <p>
      * <pre class="code">
@@ -191,8 +191,8 @@ public class WebapplicationConfiguration {
 
     /**
      * A filter is an object that performs filtering tasks on either the
-     * request to a resource (a servlet or static content), or on the response
-     * from a resource, or both.
+     * request to a resources (a servlet or static content), or on the response
+     * from a resources, or both.
      * <p>
      * <p>Filters perform filtering in the <code>doFilter</code> method.
      * Every Filter has access to a FilterConfig object from which it can obtain
@@ -210,7 +210,7 @@ public class WebapplicationConfiguration {
      * <li>Data compression Filters
      * <li>Encryption Filters
      * <li>Tokenizing Filters
-     * <li>Filters that trigger resource access events
+     * <li>Filters that trigger resources access events
      * <li>XSL/T filters
      * <li>Mime-type chain Filter
      * </ol>

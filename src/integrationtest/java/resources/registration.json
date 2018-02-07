@@ -1,0 +1,10 @@
+{
+  "firstName": "Praveenkumar",
+  "lastName": "Shethe",
+  "email": "praveen.shethe7@gmail.com",
+  "username": "Praveen",
+  "expires": 360000,
+  "role": {
+    "name": "LIBRARY_STAFF"
+  }
+}

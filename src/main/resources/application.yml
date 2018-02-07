@@ -34,7 +34,7 @@ logging:
     com.praveen.shethe: OFF
     b.c.e.u.UndertowEmbeddedServletContainer: OFF
 ---
-#Properties for the "local" profile, to be used by developers on their laptop
+#Properties for the "prod" profile, to be used by developers on their laptop
 spring:
   profiles: prod
   jpa:
@@ -56,7 +56,7 @@ logging:
     com.praveen.shethe: OFF
     b.c.e.u.UndertowEmbeddedServletContainer: OFF
 ---
-#Properties for the "local" profile, to be used by developers on their laptop
+#Properties for the "qa" profile, to be used by developers on their laptop
 spring:
   profiles: qa
   jpa:

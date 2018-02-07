@@ -27,6 +27,13 @@ public class DigitalLibraryController {
     @Autowired
     private FileUploadService fileUploadService;
 
+
+    /**
+     * Add a Library to database.
+     * @param inputFile The Digital files object to be inserted
+     * {@code 201 Created}. for creating an object
+     * {@code 400 Bad Request}. for all other requests
+     */
     @RequestMapping(headers = ("content-type=multipart/*"), method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional(Transactional.TxType.REQUIRES_NEW)
