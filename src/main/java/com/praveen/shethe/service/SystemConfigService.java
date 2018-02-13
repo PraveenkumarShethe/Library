@@ -10,8 +10,8 @@ public class SystemConfigService {
     @Autowired
     private Environment environment;
 
-    public void envConfig(){
-        environment.getDefaultProfiles();
+    public String[] envConfig(){
+        return environment.getDefaultProfiles();
     }
 
 }
