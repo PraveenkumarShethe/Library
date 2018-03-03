@@ -70,6 +70,7 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
                 .antMatchers("/").permitAll()
                 .antMatchers(HttpMethod.POST, "/login/authenticate").permitAll()
                 .antMatchers("/books/**").authenticated()
+                .antMatchers(HttpMethod.GET, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .anyRequest().hasRole("USER").and()
                 .addFilterBefore(this.statelessTokenBasedLoginFilter(), UsernamePasswordAuthenticationFilter.class)
