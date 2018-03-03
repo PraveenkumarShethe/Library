@@ -42,6 +42,7 @@ public class RegistrationController {
         upayogakartaRepository.save(upayogakarta);
     }
 
+
     /**
      * @return An iterable of the list of Upayogakarta without filter
      * Http.ok will be returned{@code 200 OK}.

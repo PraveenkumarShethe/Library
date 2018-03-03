@@ -24,8 +24,8 @@ public class BookController {
     /**
      * @return An iterable of the list of Books without filter
      * Http.ok will be returned{@code 200 OK}.
-     * Http.NOT_FOUND will be returned if not found {@code 404 Not Found}.
-     */
+            * Http.NOT_FOUND will be returned if not found {@code 404 Not Found}.
+            */
     //Todo Need to add doc for principle
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)

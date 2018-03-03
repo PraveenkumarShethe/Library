@@ -2,9 +2,11 @@ package com.praveen.shethe.config;
 
 import org.springframework.web.SpringServletContainerInitializer;
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
@@ -194,6 +196,56 @@ public class MyWebAppInitializer implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("*.html");
     }
+
+
+    /**
+     * {@link org.springframework.web.context.WebApplicationContext WebApplicationContext}
+     * implementation which accepts annotated classes as input - in particular
+     * {@link org.springframework.context.annotation.Configuration @Configuration}-annotated
+     * classes, but also plain {@link org.springframework.stereotype.Component @Component}
+     * classes and JSR-330 compliant classes using {@code javax.inject} annotations. Allows
+     * for registering classes one by one (specifying class names as config location) as well
+     * as for classpath scanning (specifying base packages as config location).
+     *
+     * <p>This is essentially the equivalent of
+     * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext
+     * AnnotationConfigApplicationContext} for a web environment.
+     *
+     * <p>To make use of this application context, the
+     * {@linkplain ContextLoader#CONTEXT_CLASS_PARAM "contextClass"} context-param for
+     * ContextLoader and/or "contextClass" init-param for FrameworkServlet must be set to
+     * the fully-qualified name of this class.
+     *
+     * <p>As of Spring 3.1, this class may also be directly instantiated and injected into
+     * Spring's {@code DispatcherServlet} or {@code ContextLoaderListener} when using the
+     * new {@link org.springframework.web.WebApplicationInitializer WebApplicationInitializer}
+     * code-based alternative to {@code web.xml}. See its Javadoc for details and usage examples.
+     *
+     * <p>Unlike {@link XmlWebApplicationContext}, no default configuration class locations
+     * are assumed. Rather, it is a requirement to set the
+     * {@linkplain ContextLoader#CONFIG_LOCATION_PARAM "contextConfigLocation"}
+     * context-param for {@link ContextLoader} and/or "contextConfigLocation" init-param for
+     * FrameworkServlet.  The param-value may contain both fully-qualified
+     * class names and base packages to scan for components. See {#loadBeanDefinitions}
+     * for exact details on how these locations are processed.
+     *
+     * <p>As an alternative to setting the "contextConfigLocation" parameter, users may
+     * implement an {@link org.springframework.context.ApplicationContextInitializer
+     * ApplicationContextInitializer} and set the
+     * {@linkplain ContextLoader#CONTEXT_INITIALIZER_CLASSES_PARAM "contextInitializerClasses"}
+     * context-param / init-param. In such cases, users should favor the { #refresh()}
+     * and {#scan(String...)} methods over the {#setConfigLocation(String)}
+     * method, which is primarily for use by {@code ContextLoader}.
+     *
+     * <p>Note: In case of multiple {@code @Configuration} classes, later {@code @Bean}
+     * definitions will override ones defined in earlier loaded files. This can be leveraged
+     * to deliberately override certain bean definitions via an extra Configuration class.
+     *
+     * @author Chris Beams
+     * @author Juergen Hoeller
+     * @since 3.0
+     * @see org.springframework.context.annotation.AnnotationConfigApplicationContext
+     */
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
